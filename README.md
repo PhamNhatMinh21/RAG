@@ -60,22 +60,11 @@ Chạy ở terminal thay cho giao diện web:
 
 Chế độ terminal cần API key trong `.env` hoặc biến môi trường. Nhập `/exit` để thoát. Với giao diện web, nhấn `Ctrl+C` trong terminal hoặc nút **Tắt app** để dừng.
 
-## Kiểm tra
-
-Sau khi cài thư viện:
-
-```powershell
-.\.venv\Scripts\python.exe -m unittest -v test_chat_session.py
-```
-
-Bài test dùng model giả lập, không cần API key và không gọi Gemini hay tải model embedding. Các phiên bản thư viện trực tiếp trong `requirements.txt` được chốt theo môi trường Python 3.12 đã kiểm tra; các thư viện phụ thuộc gián tiếp do pip giải quyết khi cài.
-
 ## File đưa lên Git
 
 - `chat.py`, `streamlit_app.py`: xử lý RAG và giao diện.
 - `papers/`: tài liệu PDF đi kèm.
 - `requirements.txt`: danh sách thư viện cần cài.
 - `.env.example`, `.gitignore`, `.gitattributes`: cấu hình mẫu và quy tắc Git.
-- `test_chat_session.py`: kiểm tra lịch sử hội thoại, trích dẫn và giao diện.
 
 `.env`, `.venv*`, `.cache/`, `.tmp/`, `__pycache__/` và file sinh tự động được bỏ qua bởi `.gitignore`. Các thư mục này vẫn có thể giữ trên máy để dùng tiếp; người tải repo sẽ tạo môi trường và cache của riêng họ.
