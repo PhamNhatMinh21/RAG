@@ -6,16 +6,20 @@ Chatbot tiếng Việt hỏi đáp dựa trên PDF, dùng Gemini để trả l�
 
 1. Cài **Python 3.12 bản 64-bit**. Trên Windows, bật **Add python.exe to PATH** khi cài.
 2. Clone repo hoặc chọn **Code → Download ZIP** trên GitHub rồi giải nén.
-3. Trên Windows, mở **`run.bat`**. Script tự tạo `.venv`, cài thư viện và mở ứng dụng. Có thể chạy từ terminal:
+3. Mở terminal trong thư mục dự án. Trên Windows, chạy:
 
    ```powershell
-   py -3.12 run.py
+   py -3.12 -m venv .venv
+   .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+   .\.venv\Scripts\python.exe -m streamlit run streamlit_app.py
    ```
 
    Trên macOS/Linux có Python 3.12:
 
    ```bash
-   python3.12 run.py
+   python3.12 -m venv .venv
+   .venv/bin/python -m pip install -r requirements.txt
+   .venv/bin/python -m streamlit run streamlit_app.py
    ```
 
 4. Mở địa chỉ Streamlit hiển thị trong terminal (thường là `http://localhost:8501`) nếu trình duyệt chưa tự mở.
@@ -38,17 +42,15 @@ GEMINI_MODEL=gemini-3.5-flash-lite
 
 Không đưa `.env` thật lên Git. Repo chỉ chứa `.env.example` với key trống; người tải về cần dùng key của riêng họ.
 
-## Cài đặt thủ công
+## Chạy lại và chế độ terminal
 
-Các lệnh sau dùng trên Windows, không cần kích hoạt môi trường:
+Sau khi đã cài thư viện, các lần sau chỉ cần mở terminal trong thư mục dự án và chạy:
 
 ```powershell
-py -3.12 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe -m streamlit run streamlit_app.py
 ```
 
-Trên macOS/Linux, tạo môi trường bằng `python3.12 -m venv .venv` và thay `.\.venv\Scripts\python.exe` bằng `.venv/bin/python` trong các lệnh tương ứng. Nếu báo thiếu `venv`, cài gói venv cho Python 3.12 bằng trình quản lý gói của hệ điều hành.
+Trên macOS/Linux, thay `.\.venv\Scripts\python.exe` bằng `.venv/bin/python` trong các lệnh tương ứng. Nếu báo thiếu `venv` khi tạo môi trường, cài gói venv cho Python 3.12 bằng trình quản lý gói của hệ điều hành.
 
 Chạy ở terminal thay cho giao diện web:
 
@@ -72,7 +74,7 @@ Bài test dùng model giả lập, không cần API key và không gọi Gemini 
 
 - `chat.py`, `streamlit_app.py`: xử lý RAG và giao diện.
 - `papers/`: tài liệu PDF đi kèm.
-- `requirements.txt`, `run.py`, `run.bat`: cài đặt và khởi chạy.
+- `requirements.txt`: danh sách thư viện cần cài.
 - `.env.example`, `.gitignore`, `.gitattributes`: cấu hình mẫu và quy tắc Git.
 - `test_chat_session.py`: kiểm tra lịch sử hội thoại, trích dẫn và giao diện.
 
